@@ -20,6 +20,7 @@ import twitter4j.conf.Configuration;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import static twitter4j.ParseUtil.getDate;
 
@@ -31,6 +32,7 @@ import static twitter4j.ParseUtil.getDate;
 /*package*/ final class StatusJSONImpl extends TwitterResponseImpl implements Status, java.io.Serializable {
     private static final Logger logger = Logger.getLogger(StatusJSONImpl.class);
     private static final long serialVersionUID = -6461195536943679985L;
+    private static final SimpleDateFormat DATE_ISO8601_FORMATTER=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
 
     private Date createdAt;
     private long id;
