@@ -430,33 +430,14 @@ import static twitter4j.ParseUtil.getDate;
 
     @Override
     public String toString() {
-        return "StatusJSONImpl{" +
-                "createdAt=" + createdAt +
-                ", id=" + id +
-                ", text='" + text + '\'' +
-                ", source='" + source + '\'' +
-                ", isTruncated=" + isTruncated +
-                ", inReplyToStatusId=" + inReplyToStatusId +
-                ", inReplyToUserId=" + inReplyToUserId +
-                ", isFavorited=" + isFavorited +
-                ", isRetweeted=" + isRetweeted +
-                ", favoriteCount=" + favoriteCount +
-                ", inReplyToScreenName='" + inReplyToScreenName + '\'' +
-                ", geoLocation=" + geoLocation +
-                ", place=" + place +
-                ", retweetCount=" + retweetCount +
-                ", isPossiblySensitive=" + isPossiblySensitive +
-                ", lang='" + lang + '\'' +
-                ", contributorsIDs=" + Arrays.toString(contributorsIDs) +
-                ", retweetedStatus=" + retweetedStatus +
-                ", userMentionEntities=" + Arrays.toString(userMentionEntities) +
-                ", urlEntities=" + Arrays.toString(urlEntities) +
-                ", hashtagEntities=" + Arrays.toString(hashtagEntities) +
-                ", mediaEntities=" + Arrays.toString(mediaEntities) +
-                ", symbolEntities=" + Arrays.toString(symbolEntities) +
-                ", currentUserRetweetId=" + currentUserRetweetId +
-                ", user=" + user +
-                ", withHeldInCountries=" + Arrays.toString(withheldInCountries)+
-                '}';
+        text=text.replaceAll("\r|\n", " ").replaceAll("\\s+", " ");
+        JSONObject twObj=new JSONObject(this);
+        try {
+            twObj.put("createdAt", DATE_ISO8601_FORMATTER.format(createdAt));
+        } catch (JSONException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        return twObj.toString();   
     }
 }
