@@ -23,6 +23,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import static twitter4j.ParseUtil.getDate;
+import twitter4j.util.JsonUtils;
 
 /**
  * A data class representing one single status of a user.
@@ -433,13 +434,14 @@ import static twitter4j.ParseUtil.getDate;
     @Override
     public String toString() {
         text=text.replaceAll("\r|\n", " ").replaceAll("\\s+", " ");
-        JSONObject twObj=new JSONObject(this);
-        try {
-            twObj.put("createdAt", DATE_ISO8601_FORMATTER.format(createdAt));
-        } catch (JSONException ex) {
-            throw new RuntimeException(ex);
-        }
-
-        return twObj.toString();   
+//        JSONObject twObj=new JSONObject(this);
+//        try {
+//            twObj.put("createdAt", DATE_ISO8601_FORMATTER.format(createdAt));
+//        } catch (JSONException ex) {
+//            throw new RuntimeException(ex);
+//        }
+//
+//        return twObj.toString();   
+        return JsonUtils.serialize(this);
     }
 }
