@@ -553,6 +553,9 @@ public interface ListsResources {
      */
     PagableResponseList<User> getUserListMembers(long listId, long cursor)
             throws TwitterException;
+			
+	PagableResponseList<User> getUserListMembers(long listId, int count,long cursor)
+            throws TwitterException;
 
     /**
      * Returns the members of the specified list.
